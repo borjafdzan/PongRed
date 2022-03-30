@@ -4,10 +4,13 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
+
+
 public class Pelota : NetworkBehaviour
 {
     float velocidad = 5;
     Rigidbody2D cuerpo;
+    public static event Action<int> eventoMarcar;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,12 +25,18 @@ public class Pelota : NetworkBehaviour
         Debug.Log("Has hecho un punto");
         this.transform.position = new Vector2(30, 30);
         this.cuerpo.velocity = Vector2.zero;
+        if (collider2.gameObject.tag == "ZonaJugador1"){
+            eventoMarcar?.Invoke(2);
+        } else if (collider2.gameObject.tag == "ZonaJugador2"){
+            eventoMarcar?.Invoke(1);
+        }
         Invoke("Resetear" , 0.5f);
     }
 
     private void Resetear(){
         this.transform.position = Vector2.zero;
         this.cuerpo.velocity = Vector2.right * velocidad;
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision2D)

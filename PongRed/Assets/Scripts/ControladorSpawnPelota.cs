@@ -18,7 +18,7 @@ public class ControladorSpawnPelota : NetworkBehaviour
     {
         Debug.Log(cuentaClientes);
         cuentaClientes++;
-        if (cuentaClientes == 1)
+        if (cuentaClientes == 2)
         {
             if (IsServer)
             {
