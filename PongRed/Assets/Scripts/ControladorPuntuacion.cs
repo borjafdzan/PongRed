@@ -5,12 +5,15 @@ using Unity.Netcode;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class ControladorGUI1 :  NetworkBehaviour
+public class ControladorPuntuacion:  NetworkBehaviour
 {
     NetworkVariable<int> puntuacionjugador1;
     NetworkVariable<int> puntuacionjugador2;
     public Text textoJugador1;
     public Text textoJugador2;
+    public Text textoGanador;
+    public GameObject menuGanador;
+    public static event Action juegoAcabado;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,11 +28,21 @@ public class ControladorGUI1 :  NetworkBehaviour
     private void OnCambiarJugador2(int previousValue, int newValue)
     {
         this.textoJugador2.text = newValue+"";
+        if (newValue == 5){
+            textoGanador.text = "El ganador es el jugador 2";
+            juegoAcabado?.Invoke();
+            menuGanador.SetActive(true);
+        }
     }
 
     private void OnCambiarJugador1(int previousValue, int newValue)
     {
         this.textoJugador1.text = newValue+"";
+        if (newValue == 5){
+            textoGanador.text = "El ganador es el jugador 1";
+            juegoAcabado?.Invoke();
+            menuGanador.SetActive(true);
+        }
     }
 
     private void OnMarcar(int idJugador)

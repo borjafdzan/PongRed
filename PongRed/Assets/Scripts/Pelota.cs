@@ -10,6 +10,7 @@ public class Pelota : NetworkBehaviour
 {
     float velocidad = 5;
     Rigidbody2D cuerpo;
+    
     NetworkVariable<Vector3> posicionPelota = new NetworkVariable<Vector3>();
     public static event Action<int> eventoMarcar;
     // Start is called before the first frame update
@@ -17,10 +18,16 @@ public class Pelota : NetworkBehaviour
     {
         this.cuerpo = GetComponent<Rigidbody2D>();
         this.posicionPelota.OnValueChanged += OnCambioPosicionPelota;
+        ControladorPuntuacion.juegoAcabado += OnJuegoAcabado;
         if (IsServer)
         {
             this.cuerpo.velocity = Vector2.left * velocidad;
         }
+    }
+
+    private void OnJuegoAcabado()
+    {
+        this.gameObject.SetActive(false);
     }
 
     private void OnCambioPosicionPelota(Vector3 previousValue, Vector3 newValue)
@@ -45,7 +52,7 @@ public class Pelota : NetworkBehaviour
         this.cuerpo.velocity = Vector2.right * velocidad;
 
     }
-    void FixedUpdate(){
+    void Update(){
         CambiarPosicionPelotaServerRpc(this.transform.position);
     }
 
