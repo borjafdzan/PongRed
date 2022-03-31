@@ -40,10 +40,16 @@ public class Jugador : NetworkBehaviour
             Vector3 siguientePosicion = this.transform.position + (Vector3.up * (entradaVertical * Time.deltaTime * velocidad));
             if (Mathf.Abs(siguientePosicion.y) < TOPE)
             {
-                this.transform.position = siguientePosicion;
+                //this.transform.position = siguientePosicion;
+                ActualizarPosicionJugadorServerRpc(siguientePosicion);
             }
         }
 
+    }
+
+    [ServerRpc]
+    private void ActualizarPosicionJugadorServerRpc(Vector3 siguientePosicion){
+        this.posicionJugador.Value = siguientePosicion;
     }
 
 }

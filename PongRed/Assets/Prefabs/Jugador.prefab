@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1860003293059403368}
   - component: {fileID: 1860003293059403369}
   - component: {fileID: 1860003293059403370}
-  - component: {fileID: 3767979012113547024}
   - component: {fileID: -4067506011873961280}
   - component: {fileID: 710805699898390541}
   m_Layer: 0
@@ -117,33 +116,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocidad: 5
   TOPE: 3.9
---- !u!114 &3767979012113547024
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1860003293059403374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54c9647dc784a46bca664910f182491e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SyncPositionX: 1
-  SyncPositionY: 1
-  SyncPositionZ: 1
-  SyncRotAngleX: 1
-  SyncRotAngleY: 1
-  SyncRotAngleZ: 1
-  SyncScaleX: 1
-  SyncScaleY: 1
-  SyncScaleZ: 1
-  PositionThreshold: 0.001
-  RotAngleThreshold: 0.01
-  ScaleThreshold: 0.01
-  InLocalSpace: 0
-  Interpolate: 1
-  CanCommitToTransform: 0
 --- !u!50 &-4067506011873961280
 Rigidbody2D:
   serializedVersion: 4
